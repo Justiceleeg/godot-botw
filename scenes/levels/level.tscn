@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bugokch404tmn"]
+
+[ext_resource type="Script" path="res://mesh_instance_3d_2.gd" id="1_pg4ur"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8ue03"]
+sky_top_color = Color(0.367554, 0.773052, 0.958684, 1)
+sky_horizon_color = Color(0.638261, 0.735962, 0.782066, 1)
+ground_bottom_color = Color(0.185491, 0.170795, 0.169581, 1)
+ground_horizon_color = Color(0.638261, 0.735962, 0.782066, 1)
+
+[sub_resource type="Sky" id="Sky_ppgci"]
+sky_material = SubResource("ProceduralSkyMaterial_8ue03")
+
+[sub_resource type="Environment" id="Environment_s5j0e"]
+background_mode = 2
+sky = SubResource("Sky_ppgci")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntsvi"]
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_y4wxn"]
+material = SubResource("StandardMaterial3D_ntsvi")
+inner_radius = 0.283
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s5j0e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2969, 4.56711)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.464177, -0.885742, 0, 0.885742, 0.464177, 0, 1.19905, 0)
+mesh = SubResource("TorusMesh_y4wxn")
+script = ExtResource("1_pg4ur")
